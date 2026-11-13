@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wounded Heroes Family Assistance & Military Honour Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cinzel:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --army-green: #2d3a2e;
+            --army-dark: #1a2419;
+            --army-darker: #0a0f0a;
+            --army-black: #050805;
+            --gold: #c5a059;
+            --gold-bright: #e0bd6e;
+            --gold-deep: #8a6d3b;
+            --white: #ffffff;
+            --off-white: #f7f5f0;
+            --cream: #f4f1e8;
+            --paper: #faf9f5;
+            --flag-red: #b22234;
+            --flag-red-dark: #7a1620;
+            --flag-blue: #3c3b6e;
+            --flag-blue-dark: #1e2a52;
+            --text-dark: #0a0a0a;
+            --text-mid: #333333;
+            --text-light: #666666;
+            --text-muted: #999999;
+            --success: #1b6b3a;
+            --success-bg: #e6f4ea;
+            --warning: #b7791f;
+            --warning-bg: #fff8e1;
+            --danger: #9b1c1c;
+            --danger-bg: #fdeaea;
+            --info: #1e4d8b;
+            --info-bg: #e8f0fb;
+            --border: #e0d8c4;
+            --border-light: #f0ebe0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            font-weight: 400;
+            background: var(--white); /* Clean solid white background */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800;
+            color: var(--army-dark);
+            margin-bottom: 1rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        h1 { font-family: 'Cinzel', serif; font-size: 3.4rem; font-weight: 900; letter-spacing: 0.5px; }
+        h2 { font-family: 'Cinzel', serif; font-size: 2.6rem; font-weight: 800; }
+        h3 { font-size: 1.75rem; font-weight: 800; }
+        h4 { font-size: 1.25rem; font-weight: 700; }
+        h5 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); }
+
+        p { margin-bottom: 1rem; color: var(--text-mid); }
+        a { text-decoration: none; color: var(--army-green); transition: color 0.2s ease; cursor: pointer; }
+        a:hover { color: var(--gold-deep); }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.95rem 1.8rem; border-radius: 4px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.2px; cursor: pointer;
+            transition: all 0.2s ease; border: 2px solid transparent; font-size: 0.82rem;
+            font-family: 'Inter', sans-serif; position: relative; overflow: hidden;
+        }
+        .btn-primary { background: var(--army-dark); color: var(--white); box-shadow: 0 4px 0 var(--army-black), 0 6px 14px rgba(0,0,0,0.3); }
+        .btn-primary:hover { background: var(--army-black); transform: translateY(-2px); box-shadow: 0 6px 0 var(--army-black), 0 10px 20px rgba(0,0,0,0.4); }
+        .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--army-black); }
+        .btn-gold { background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); color: var(--army-dark); box-shadow: 0 4px 0 var(--gold-deep), 0 6px 14px rgba(138, 109, 59, 0.5); font-weight: 800; }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--gold-deep), 0 10px 20px rgba(138, 109, 59, 0.6); }
+        .btn-gold:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--gold-deep); }
+        .btn-outline { border: 2px solid var(--army-dark); color: var(--army-dark); background: transparent; font-weight: 700; }
+        .btn-outline:hover { background: var(--army-dark); color: var(--white); }
+        .btn-ghost { background: transparent; color: var(--army-dark); border: 1px solid var(--border); }
+        .btn-ghost:hover { background: var(--cream); border-color: var(--gold); }
+        .btn-sm { padding: 0.55rem 1rem; font-size: 0.72rem; }
+        .btn-lg { padding: 1.1rem 2.4rem; font-size: 0.9rem; }
+
+        /* === CLEAN BACKGROUND === */
+        .flag-bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; background: var(--white); }
+        .flag-stripes { display: none; }
+        .flag-union { display: none; }
+        .flag-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: var(--white); }
+
+        /* === UTILITY BAR === */
+        .utility-bar { background: var(--army-black); color: rgba(255,255,255,0.7); padding: 0.4rem 0; font-size: 0.72rem; letter-spacing: 0.5px; }
+        .utility-bar .container { display: flex; justify-content: space-between; align-items: center; }
+        .utility-bar i { color: var(--gold-bright); margin-right: 6px; }
+        .utility-bar a { color: rgba(255,255,255,0.7); font-size: 0.72rem; }
+        .utility-bar a:hover { color: var(--gold-bright); }
+        .utility-left { display: flex; gap: 1.5rem; }
+        .utility-right { display: flex; gap: 1.5rem; align-items: center; }
+
+        /* === NAV === */
+        header { background: linear-gradient(180deg, var(--army-darker) 0%, var(--army-dark) 100%); box-shadow: 0 4px 20px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 1000; border-bottom: 4px solid var(--gold); }
+        header::before { content: ''; display: block; height: 5px; background: linear-gradient(to right, var(--flag-red) 0%, var(--flag-red) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--flag-blue) 66.66%, var(--flag-blue) 100%); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 14px; font-family: 'Cinzel', serif; font-weight: 800; font-size: 1.15rem; color: var(--white); letter-spacing: 0.5px; cursor: pointer; }
+        .logo .seal { width: 52px; height: 52px; background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--army-dark); font-size: 1.6rem; box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.4), 0 0 20px rgba(197, 160, 89, 0.3); animation: seal-pulse 3s ease-in-out infinite; }
+        @keyframes seal-pulse { 0%, 100% { box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.4), 0 0 20px rgba(197, 160, 89, 0.3); } 50% { box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.6), 0 0 30px rgba(197, 160, 89, 0.5); } }
+        .logo-sub { font-size: 0.62rem; color: var(--gold-bright); letter-spacing: 2.5px; font-weight: 600; }
+        .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.8px; padding: 0.7rem 1rem; border-radius: 3px; transition: all 0.2s ease; cursor: pointer; position: relative; }
+        .nav-links a:hover { color: var(--gold-bright); background: rgba(197, 160, 89, 0.1); }
+        .nav-links a.active { color: var(--gold-bright); background: rgba(197, 160, 89, 0.15); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 1rem; right: 1rem; height: 2px; background: var(--gold-bright); }
+        .nav-cta { display: flex; gap: 0.8rem; align-items: center; }
+        .nav-cta .btn { padding: 0.6rem 1.4rem; font-size: 0.72rem; }
+        .nav-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; background: none; border: none; }
+
+        .page { display: none; animation: page-fade-in 0.5s ease; min-height: 60vh; padding: 0 0 5rem 0; }
+        .page.active { display: block; }
+        @keyframes page-fade-in { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .breadcrumb { background: var(--army-dark); padding: 0.8rem 0; border-bottom: 1px solid rgba(197, 160, 89, 0.3); }
+        .breadcrumb-trail { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .breadcrumb-trail a { color: var(--gold-bright); cursor: pointer; }
+        .breadcrumb-trail i { font-size: 0.55rem; color: rgba(255,255,255,0.4); }
+
+        /* HERO */
+        .hero { background: linear-gradient(135deg, rgba(10, 15, 10, 0.85) 0%, rgba(30, 42, 82, 0.82) 50%, rgba(10, 15, 10, 0.85) 100%), url('https://images.unsplash.com/photo-1574943320219-553eb0f44249?q=80&w=2073&auto=format&fit=crop') no-repeat center center/cover; color: var(--white); padding: 5rem 2rem 4.5rem 2rem; text-align: center; position: relative; overflow: hidden; border-bottom: 5px solid var(--gold); }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: linear-gradient(to right, var(--flag-red) 0%, var(--flag-red) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--flag-blue) 66.66%, var(--flag-blue) 100%); }
+        .floating-star { position: absolute; color: var(--gold-bright); opacity: 0.4; font-size: 1.5rem; animation: float-star 6s ease-in-out infinite; }
+        @keyframes float-star { 0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; } 50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; } }
+        .hero-emblem { width: 110px; height: 110px; margin: 0 auto 1.5rem auto; background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--army-dark); font-size: 2.8rem; box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.25), 0 0 0 10px rgba(197, 160, 89, 0.12), 0 0 50px rgba(197, 160, 89, 0.5); animation: emblem-glow 3s ease-in-out infinite; position: relative; z-index: 2; }
+        @keyframes emblem-glow { 0%, 100% { box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.25), 0 0 0 10px rgba(197, 160, 89, 0.12), 0 0 50px rgba(197, 160, 89, 0.5); } 50% { box-shadow: 0 0 0 7px rgba(197, 160, 89, 0.35), 0 0 0 14px rgba(197, 160, 89, 0.18), 0 0 70px rgba(197, 160, 89, 0.7); } }
+        .hero h1 { color: var(--white); margin-bottom: 1rem; text-shadow: 0 4px 24px rgba(0,0,0,0.7); font-size: 3.8rem; }
+        .hero .tagline { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-bright); margin-bottom: 2rem; font-style: italic; font-weight: 600; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.1rem; max-width: 820px; margin: 0 auto 2.5rem auto; color: rgba(255,255,255,0.92); font-weight: 400; }
+        .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; z-index: 2; }
+
+        .section-header { text-align: center; max-width: 820px; margin: 0 auto 3rem auto; }
+        .section-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3.5px; color: var(--gold-deep); margin-bottom: 1rem; padding: 0.5rem 1.4rem; border: 1px solid var(--gold); border-radius: 2px; background: rgba(197, 160, 89, 0.05); }
+        .divider-gold { width: 120px; height: 3px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 1.5rem auto; position: relative; }
+        .divider-gold::after { content: '\f005'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--gold-deep); font-size: 0.85rem; background: var(--white); padding: 0 10px; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .feature-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)); }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: 0 18px 38px rgba(0,0,0,0.12); }
+        .feature-card i { font-size: 2.5rem; color: var(--gold-deep); margin-bottom: 1rem; }
+        .feature-card h4 { margin-bottom: 0.5rem; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
+        .award-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: all 0.3s ease; text-align: center; position: relative; }
+        .award-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)); }
+        .award-card:hover { transform: translateY(-8px); box-shadow: 0 22px 44px rgba(0,0,0,0.14); }
+        .award-icon-wrap { height: 180px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--cream), var(--off-white)); border-bottom: 1px solid var(--border); }
+        .award-icon { font-size: 5rem; color: var(--gold-deep); animation: medal-shine 4s ease-in-out infinite; }
+        @keyframes medal-shine { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .award-amount { font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 900; color: var(--army-dark); }
+        .award-tesla-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
+        .award-card:hover .award-tesla-img { transform: scale(1.05); }
+        .award-body { padding: 1.8rem; }
+        .award-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .award-body p { font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem; }
+        .status-tag { display: inline-block; padding: 0.35rem 0.95rem; border-radius: 2px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; background: var(--warning-bg); color: var(--warning); border: 1px solid #ffe082; }
+
+        .message-letter { background: var(--white); padding: 3.5rem; border-radius: 4px; max-width: 820px; margin: 0 auto; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.12); border-left: 6px solid var(--gold); }
+        .message-letter h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--army-dark); margin-bottom: 1.5rem; letter-spacing: 1px; }
+        .message-letter p { font-size: 1.02rem; line-height: 1.9; color: #333; margin-bottom: 1.2rem; font-style: italic; }
+        .signature-block { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--gold); }
+        .signature-block .sig-line { font-family: 'Cinzel', serif; font-size: 1.15rem; color: var(--army-dark); font-weight: 700; letter-spacing: 1px; }
+
+        .workflow-tracker { display: flex; justify-content: space-between; margin-bottom: 3rem; position: relative; }
+        .workflow-tracker::before { content: ''; position: absolute; top: 22px; left: 0; width: 100%; height: 2px; background: #d4d4d4; z-index: 0; }
+        .step { position: relative; z-index: 1; background: var(--white); padding: 0 0.8rem; text-align: center; flex: 1; }
+        .step-icon { width: 44px; height: 44px; background: var(--cream); border: 2px solid #d4d4d4; border-radius: 50%; margin: 0 auto 0.8rem auto; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: all 0.4s ease; }
+        .step.active .step-icon { background: var(--army-dark); border-color: var(--gold); color: var(--gold-bright); box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.2); animation: step-pulse 2s ease-in-out infinite; }
+        @keyframes step-pulse { 0%, 100% { box-shadow: 0 0 0 5px rgba(197, 160, 89, 0.2); } 50% { box-shadow: 0 0 0 8px rgba(197, 160, 89, 0.3); } }
+        .step.completed .step-icon { background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); border-color: var(--gold-deep); color: var(--white); }
+        .step p { font-size: 0.72rem; font-weight: 700; color: var(--text-light); margin: 0; text-transform: uppercase; letter-spacing: 0.8px; }
+        .step.active p { color: var(--army-dark); }
+
+        .form-container { background: var(--white); padding: 3rem; border-radius: 4px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); max-width: 880px; margin: 0 auto; border-top: 5px solid; border-image: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)) 1; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.82rem; color: var(--army-dark); text-transform: uppercase; letter-spacing: 0.8px; }
+        .form-control { width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.2s ease; background: var(--paper); font-weight: 500; }
+        .form-control:focus { outline: none; border-color: var(--army-dark); background: var(--white); box-shadow: 0 0 0 3px rgba(26, 36, 25, 0.1); }
+        .form-row { display: flex; gap: 1rem; }
+        .form-row .form-group { flex: 1; }
+        .upload-zone { border: 2px dashed var(--gold); background: rgba(197, 160, 89, 0.05); padding: 2rem; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s ease; }
+        .upload-zone:hover { background: rgba(197, 160, 89, 0.1); border-color: var(--gold-deep); }
+        .upload-zone i { font-size: 2rem; color: var(--gold-deep); margin-bottom: 0.5rem; }
+
+        .review-screen { text-align: center; background: var(--white); padding: 4rem 2rem; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.12); max-width: 720px; margin: 0 auto; border-top: 5px solid; border-image: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)) 1; }
+        .review-emblem { width: 90px; height: 90px; margin: 0 auto 1.5rem auto; background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--army-dark); font-size: 2.4rem; animation: rotate-slow 6s linear infinite; box-shadow: 0 0 30px rgba(197, 160, 89, 0.5); }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .countdown-timer { font-family: 'Cinzel', serif; font-size: 4rem; font-weight: 900; color: var(--army-dark); margin: 1.5rem 0; letter-spacing: 4px; }
+        .progress-bar-container { width: 100%; background: #e0e0e0; height: 12px; border-radius: 6px; overflow: hidden; margin: 2rem 0; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(to right, var(--flag-red), var(--gold-bright), var(--flag-blue)); width: 0%; transition: width 1s linear; }
+
+        /* === DASHBOARD === */
+        .dashboard-hero { background: linear-gradient(135deg, var(--army-darker) 0%, var(--flag-blue-dark) 50%, var(--army-dark) 100%); color: var(--white); padding: 3rem; border-radius: 10px; margin-bottom: 2rem; position: relative; overflow: hidden; border: 1px solid var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .dashboard-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(to right, var(--flag-red) 0%, var(--flag-red) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--flag-blue) 66.66%, var(--flag-blue) 100%); }
+        .dashboard-hero::after { content: '\f521'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; right: 3rem; transform: translateY(-50%); font-size: 12rem; color: rgba(197, 160, 89, 0.06); pointer-events: none; }
+        .dh-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; position: relative; z-index: 1; }
+        .dh-title h2 { color: var(--white); margin-bottom: 0.3rem; font-size: 2.2rem; }
+        .dh-title .dh-sub { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500; }
+        .dh-status-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(197, 160, 89, 0.2); border: 1px solid var(--gold); padding: 0.6rem 1.2rem; border-radius: 30px; color: var(--gold-bright); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; }
+        .dh-status-badge .dot { width: 8px; height: 8px; background: var(--gold-bright); border-radius: 50%; animation: dot-pulse 1.5s ease-in-out infinite; }
+        @keyframes dot-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
+        .dh-ref { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .dh-ref-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+        .dh-ref-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--gold-bright); background: rgba(0,0,0,0.3); padding: 0.4rem 1rem; border-radius: 4px; border: 1px solid rgba(197, 160, 89, 0.3); }
+
+        .metrics-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+        .metric-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; position: relative; transition: all 0.3s ease; }
+        .metric-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .metric-card .mc-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+        .metric-card.green .mc-icon { background: var(--success-bg); color: var(--success); }
+        .metric-card.gold .mc-icon { background: var(--warning-bg); color: var(--warning); }
+        .metric-card.blue .mc-icon { background: var(--info-bg); color: var(--info); }
+        .metric-card.red .mc-icon { background: var(--danger-bg); color: var(--danger); }
+        .metric-card .mc-label { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; margin-bottom: 0.3rem; }
+        .metric-card .mc-value { font-family: 'Cinzel', serif; font-size: 1.9rem; font-weight: 800; color: var(--army-dark); line-height: 1; }
+        .metric-card .mc-trend { font-size: 0.75rem; color: var(--text-light); margin-top: 0.4rem; font-weight: 600; }
+        .metric-card .mc-trend i { color: var(--success); margin-right: 4px; }
+
+        .dashboard-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.8rem; margin-bottom: 2rem; }
+        .dashboard-layout.three-col { grid-template-columns: 1fr 1fr 1fr; }
+        .dash-panel { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.8rem; transition: all 0.3s ease; }
+        .dash-panel:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1.2rem; border-bottom: 2px solid var(--border-light); }
+        .panel-header h4 { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--army-dark); margin: 0; }
+        .panel-header h4 i { color: var(--gold-deep); margin-right: 8px; }
+        .panel-header .panel-action { font-size: 0.72rem; color: var(--gold-deep); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+        .panel-header .panel-action:hover { color: var(--army-dark); }
+
+        .person-row { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border-light); }
+        .person-row:last-child { border-bottom: none; }
+        .person-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; flex-shrink: 0; }
+        .person-avatar.gold { background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); color: var(--army-dark); }
+        .person-avatar.dark { background: var(--army-dark); color: var(--gold-bright); }
+        .person-info { flex: 1; }
+        .person-role { font-size: 0.68rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; }
+        .person-name { font-weight: 700; color: var(--army-dark); font-size: 0.98rem; }
+        .person-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+        .info-list .info-item { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
+        .info-list .info-item:last-child { border-bottom: none; }
+        .info-list .info-label { color: var(--text-light); font-weight: 600; }
+        .info-list .info-value { color: var(--army-dark); font-weight: 700; }
+        .info-list .info-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .info-list .info-value.status { color: var(--warning); }
+
+        .progress-vertical { padding: 0.5rem 0; }
+        .pv-step { display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem 0; position: relative; }
+        .pv-step:not(:last-child)::after { content: ''; position: absolute; left: 13px; top: 38px; bottom: -10px; width: 2px; background: var(--border); }
+        .pv-step.completed:not(:last-child)::after { background: var(--gold); }
+        .pv-dot { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; background: var(--cream); color: var(--text-muted); border: 2px solid var(--border); position: relative; z-index: 1; }
+        .pv-step.completed .pv-dot { background: var(--gold); color: var(--white); border-color: var(--gold-deep); }
+        .pv-step.active .pv-dot { background: var(--army-dark); color: var(--gold-bright); border-color: var(--gold); animation: step-pulse 2s ease-in-out infinite; }
+        .pv-text { flex: 1; }
+        .pv-title { font-weight: 700; color: var(--army-dark); font-size: 0.88rem; }
+        .pv-desc { font-size: 0.75rem; color: var(--text-light); }
+        .pv-date { font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .doc-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border-light); }
+        .doc-item:last-child { border-bottom: none; }
+        .doc-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+        .doc-icon.verified { background: var(--success-bg); color: var(--success); }
+        .doc-icon.pending { background: var(--warning-bg); color: var(--warning); }
+        .doc-icon.missing { background: var(--danger-bg); color: var(--danger); }
+        .doc-info { flex: 1; }
+        .doc-name { font-weight: 700; color: var(--army-dark); font-size: 0.85rem; }
+        .doc-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        .doc-status.verified { color: var(--success); }
+        .doc-status.pending { color: var(--warning); }
+        .doc-status.missing { color: var(--danger); }
+
+        .award-showcase { background: linear-gradient(135deg, var(--cream), var(--off-white)); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+        .award-showcase img { width: 100%; height: 200px; object-fit: cover; }
+        .award-showcase .caption { padding: 1rem 1.2rem; }
+        .award-showcase .caption strong { font-family: 'Cinzel', serif; color: var(--army-dark); font-size: 1rem; }
+        .award-showcase .caption .sub { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
+
+        .award-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+        .award-tile { background: var(--white); padding: 1rem; border-radius: 6px; border: 1px solid var(--border); border-left: 4px solid var(--gold); text-align: center; transition: all 0.2s ease; }
+        .award-tile:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.08); }
+        .award-tile i { font-size: 1.6rem; color: var(--gold-deep); margin-bottom: 0.5rem; }
+        .award-tile .at-name { font-weight: 700; color: var(--army-dark); font-size: 0.82rem; }
+        .award-tile .at-status { font-size: 0.62rem; color: var(--warning); text-transform: uppercase; letter-spacing: 1px; font-weight: 800; margin-top: 0.3rem; }
+
+        .comm-thread { max-height: 320px; overflow-y: auto; padding-right: 0.5rem; }
+        .comm-msg { padding: 0.8rem; border-radius: 8px; margin-bottom: 0.8rem; }
+        .comm-msg.received { background: var(--cream); border-left: 3px solid var(--gold); }
+        .comm-msg.sent { background: var(--info-bg); border-left: 3px solid var(--info); margin-left: 2rem; }
+        .comm-meta { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+        .comm-from { font-weight: 700; font-size: 0.78rem; color: var(--army-dark); text-transform: uppercase; letter-spacing: 0.8px; }
+        .comm-date { font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        .comm-body { font-size: 0.85rem; color: var(--text-mid); }
+        .comm-input { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .comm-input input { flex: 1; padding: 0.6rem 0.9rem; border: 1px solid var(--border); border-radius: 4px; font-size: 0.85rem; }
+
+        .activity-item { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border-light); }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-dot { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+        .activity-dot.success { background: var(--success-bg); color: var(--success); }
+        .activity-dot.info { background: var(--info-bg); color: var(--info); }
+        .activity-dot.gold { background: var(--warning-bg); color: var(--warning); }
+        .activity-text { flex: 1; }
+        .activity-title { font-weight: 600; color: var(--army-dark); font-size: 0.85rem; }
+        .activity-time { font-size: 0.7rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        .next-steps { background: linear-gradient(135deg, var(--army-dark), var(--flag-blue-dark)); color: var(--white); padding: 2rem; border-radius: 8px; border-left: 5px solid var(--gold); margin-bottom: 2rem; }
+        .next-steps h4 { color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 1rem; font-size: 1.1rem; }
+        .next-steps ol { padding-left: 1.2rem; }
+        .next-steps ol li { margin-bottom: 0.5rem; color: rgba(255,255,255,0.9); font-size: 0.9rem; }
+        .next-steps ol li::marker { color: var(--gold-bright); font-weight: 800; }
+
+        .quick-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; }
+        .qa-btn { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 0.8rem; text-align: center; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .qa-btn:hover { background: var(--cream); border-color: var(--gold); transform: translateY(-2px); }
+        .qa-btn i { font-size: 1.5rem; color: var(--gold-deep); margin-bottom: 0.5rem; }
+        .qa-btn .qa-label { font-weight: 700; color: var(--army-dark); font-size: 0.78rem; }
+        .qa-btn .qa-sub { font-size: 0.65rem; color: var(--text-light); margin-top: 0.2rem; }
+
+        .empty-state { text-align: center; padding: 5rem 2rem; background: var(--white); border-radius: 8px; max-width: 640px; margin: 2rem auto; border: 2px dashed var(--border); }
+        .empty-state i { font-size: 4.5rem; color: var(--gold); margin-bottom: 1.5rem; opacity: 0.7; }
+        .empty-state h2 { margin-bottom: 0.5rem; }
+        .empty-state p { color: var(--text-light); margin-bottom: 1.5rem; }
+
+        /* === DELIVERY CALLOUT === */
+        .delivery-callout {
+            background: linear-gradient(135deg, var(--flag-blue-dark), var(--army-dark));
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            color: var(--white);
+        }
+        .delivery-callout::before {
+            content: '\f521';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -2rem; top: 50%;
+            transform: translateY(-50%);
+            font-size: 14rem;
+            color: rgba(197, 160, 89, 0.05);
+            pointer-events: none;
+        }
+        .dc-content { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .dc-text { flex: 1; min-width: 280px; }
+        .dc-text h3 { color: var(--gold-bright); font-family: 'Cinzel', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .dc-text p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin: 0; }
+        .dc-icon-circle {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--army-dark); font-size: 1.6rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+        }
+        .dc-stats { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .dc-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+        .dc-stat i { color: var(--gold-bright); }
+
+        /* === DELIVERY PAGE === */
+        .delivery-manifest {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .manifest-header {
+            background: linear-gradient(135deg, var(--army-dark), var(--flag-blue-dark));
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .manifest-header h3 { color: var(--white); margin: 0; font-family: 'Cinzel', serif; font-size: 1.3rem; }
+        .manifest-header .mh-meta { font-size: 0.8rem; color: var(--gold-bright); font-family: 'JetBrains Mono', monospace; }
+
+        .manifest-table { width: 100%; border-collapse: collapse; }
+        .manifest-table th {
+            background: var(--cream);
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--army-dark);
+            border-bottom: 2px solid var(--border);
+        }
+        .manifest-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            vertical-align: middle;
+        }
+        .manifest-table tr:last-child td { border-bottom: none; }
+        .manifest-table tr:hover td { background: var(--paper); }
+        .manifest-item-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--cream), var(--off-white));
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold-deep); font-size: 1.1rem;
+        }
+        .manifest-item-name { font-weight: 700; color: var(--army-dark); }
+        .manifest-item-desc { font-size: 0.78rem; color: var(--text-light); }
+        .manifest-qty { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--army-dark); }
+        .manifest-status { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 2px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .manifest-status.ready { background: var(--success-bg); color: var(--success); }
+        .manifest-status.packed { background: var(--info-bg); color: var(--info); }
+
+        .manifest-tesla-row td { background: linear-gradient(135deg, rgba(197, 160, 89, 0.05), rgba(197, 160, 89, 0.02)); }
+        .manifest-tesla-img-small { width: 80px; height: 50px; object-fit: cover; border-radius: 4px; }
+
+        .manifest-summary {
+            background: var(--cream);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 2px solid var(--gold);
+        }
+        .manifest-summary .ms-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+        .manifest-summary .ms-value { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 800; color: var(--army-dark); }
+
+        /* Delivery Form */
+        .delivery-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .delivery-form-panel {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.5rem;
+            border-top: 4px solid var(--gold);
+        }
+        .delivery-form-panel h3 { margin-bottom: 0.5rem; }
+        .delivery-form-panel .dfp-sub { font-size: 0.88rem; color: var(--text-light); margin-bottom: 2rem; }
+
+        .summary-panel {
+            background: linear-gradient(135deg, var(--army-dark), var(--flag-blue-dark));
+            color: var(--white);
+            border-radius: 8px;
+            padding: 2.5rem;
+            border: 1px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        .summary-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue));
+        }
+        .summary-panel h3 { color: var(--gold-bright); font-family: 'Cinzel', serif; margin-bottom: 1.5rem; }
+        .summary-row { display: flex; justify-content: space-between; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-row .sr-label { color: rgba(255,255,255,0.6); }
+        .summary-row .sr-value { color: var(--white); font-weight: 700; }
+        .summary-row .sr-value.gold { color: var(--gold-bright); }
+
+        .checkbox-group { display: flex; align-items: flex-start; gap: 0.8rem; margin: 1.5rem 0; padding: 1rem; background: var(--paper); border-radius: 6px; border: 1px solid var(--border); }
+        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--army-dark); cursor: pointer; }
+        .checkbox-group label { font-size: 0.88rem; color: var(--text-mid); cursor: pointer; line-height: 1.5; }
+        .checkbox-group label strong { color: var(--army-dark); }
+
+        /* === SHIPMENT CONFIRMATION === */
+        .shipment-confirmed {
+            text-align: center;
+            background: var(--white);
+            border-radius: 10px;
+            padding: 3.5rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            max-width: 900px;
+            margin: 0 auto;
+            border-top: 5px solid;
+            border-image: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)) 1;
+            display: none;
+        }
+        .shipment-confirmed.show { display: block; animation: fade-in 0.6s ease; }
+
+        .sc-emblem {
+            width: 100px; height: 100px;
+            margin: 0 auto 1.5rem auto;
+            background: linear-gradient(135deg, var(--success), #145a2e);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 2.8rem;
+            box-shadow: 0 0 0 5px rgba(27, 107, 58, 0.2), 0 0 40px rgba(27, 107, 58, 0.3);
+            animation: success-pulse 2s ease-in-out infinite;
+        }
+        @keyframes success-pulse {
+            0%, 100% { box-shadow: 0 0 0 5px rgba(27, 107, 58, 0.2), 0 0 40px rgba(27, 107, 58, 0.3); }
+            50% { box-shadow: 0 0 0 10px rgba(27, 107, 58, 0.3), 0 0 60px rgba(27, 107, 58, 0.5); }
+        }
+        .sc-tracking-box {
+            background: linear-gradient(135deg, var(--army-dark), var(--flag-blue-dark));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid var(--gold);
+        }
+        .sc-tracking-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 0.5rem; }
+        .sc-tracking-num { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; color: var(--gold-bright); letter-spacing: 2px; }
+
+        .ship-tracker {
+            display: flex;
+            justify-content: space-between;
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        .ship-tracker::before {
+            content: ''; position: absolute; top: 25px; left: 5%; right: 5%; height: 3px;
+            background: var(--border); z-index: 0;
+        }
+        .ship-step { position: relative; z-index: 1; background: var(--white); padding: 0 0.5rem; text-align: center; flex: 1; }
+        .ship-icon {
+            width: 50px; height: 50px;
+            border-radius: 50%; margin: 0 auto 0.8rem auto;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            background: var(--cream); color: var(--text-muted);
+            border: 3px solid var(--border);
+            transition: all 0.4s ease;
+        }
+        .ship-step.completed .ship-icon { background: var(--success); color: var(--white); border-color: var(--success); }
+        .ship-step.active .ship-icon { background: var(--army-dark); color: var(--gold-bright); border-color: var(--gold); animation: step-pulse 2s ease-in-out infinite; }
+        .ship-step p { font-size: 0.72rem; font-weight: 700; color: var(--text-light); margin: 0; text-transform: uppercase; letter-spacing: 0.8px; }
+        .ship-step.completed p, .ship-step.active p { color: var(--army-dark); }
+        .ship-date { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem; font-family: 'JetBrains Mono', monospace; }
+
+        .sc-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; text-align: left; }
+        .sc-info-card { background: var(--paper); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--gold); }
+        .sc-info-card h5 { color: var(--text-light); margin-bottom: 0.5rem; }
+        .sc-info-card .sc-value { font-weight: 700; color: var(--army-dark); font-size: 1rem; }
+        .sc-info-card .sc-sub { font-size: 0.78rem; color: var(--text-light); margin-top: 0.2rem; }
+
+        .sc-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        .carrier-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--cream); border-radius: 20px; border: 1px solid var(--border); font-size: 0.82rem; font-weight: 700; color: var(--army-dark); }
+        .carrier-badge i { color: var(--flag-red); }
+
+        /* === FINAL EMAIL LINK BOX === */
+        .final-contact-box {
+            background: linear-gradient(135deg, var(--army-dark), var(--flag-blue-dark));
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 3.5rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .final-contact-box h3 {
+            color: var(--gold-bright);
+            font-family: 'Cinzel', serif;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        .final-contact-box p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .final-mailto-link {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+            color: var(--army-black) !important;
+            font-size: 1.6rem; /* Large text */
+            font-weight: 900; /* Very bold */
+            padding: 1.5rem 3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 3px solid var(--white);
+            box-shadow: 0 8px 0 var(--gold-deep), 0 12px 25px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif; /* Clean bold font */
+            letter-spacing: 0.5px;
+            word-break: break-all;
+            animation: lively-pulse 1.5s infinite; /* Lively animation */
+        }
+        .final-mailto-link:hover {
+            transform: scale(1.05);
+            color: var(--army-black) !important;
+            background: linear-gradient(135deg, #f0cf7e, var(--gold-bright));
+        }
+        @keyframes lively-pulse {
+            0% { box-shadow: 0 8px 0 var(--gold-deep), 0 0 0 0 rgba(197, 160, 89, 0.7); }
+            70% { box-shadow: 0 8px 0 var(--gold-deep), 0 0 0 20px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 8px 0 var(--gold-deep), 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+
+        /* === TIMELINE === */
+        .timeline { position: relative; padding-left: 2rem; max-width: 720px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--flag-blue)); }
+        .timeline-item { position: relative; padding-bottom: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.3rem; width: 22px; height: 22px; border-radius: 50%; background: var(--white); border: 3px solid var(--gold); z-index: 1; }
+        .timeline-item.completed::before { background: var(--gold); }
+        .timeline-item h4 { margin-bottom: 0.3rem; color: var(--army-dark); }
+        .timeline-item p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+
+        .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 0.8rem; overflow: hidden; }
+        .faq-question { padding: 1.2rem 1.5rem; cursor: pointer; font-weight: 700; color: var(--army-dark); display: flex; justify-content: space-between; align-items: center; transition: all 0.2s ease; font-size: 0.95rem; }
+        .faq-question:hover { background: var(--cream); }
+        .faq-question i { color: var(--gold-deep); transition: transform 0.3s ease; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 1.5rem; color: var(--text-light); font-size: 0.92rem; }
+        .faq-item.open .faq-answer { max-height: 300px; padding: 0 1.5rem 1.2rem 1.5rem; }
+
+        .verification-box { background: var(--white); padding: 3rem; border-radius: 4px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); max-width: 720px; margin: 0 auto; border-top: 5px solid; border-image: linear-gradient(to right, var(--flag-blue), var(--white), var(--flag-red)) 1; }
+        .verif-result { margin-top: 1.5rem; padding: 1.5rem; border-radius: 4px; display: none; }
+        .verif-result.show { display: block; animation: fade-in 0.5s ease; }
+        @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .verif-result.pending { background: var(--warning-bg); border: 1px solid #ffe082; color: var(--warning); }
+
+        .stats-bar { background: linear-gradient(135deg, var(--army-darker), var(--flag-blue-dark), var(--army-dark)); padding: 2.5rem 0; color: var(--white); border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center; }
+        .stat-item .stat-num { font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 800; color: var(--gold-bright); margin-bottom: 0.3rem; }
+        .stat-item .stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); font-weight: 700; }
+
+        .toast-container { position: fixed; top: 100px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; }
+        .toast { background: var(--white); border-left: 4px solid var(--gold); padding: 1rem 1.5rem; border-radius: 4px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 1rem; min-width: 300px; animation: toast-in 0.4s ease; }
+        .toast.success { border-left-color: var(--success); }
+        .toast.error { border-left-color: var(--danger); }
+        .toast.info { border-left-color: var(--info); }
+        .toast i { font-size: 1.3rem; }
+        .toast.success i { color: var(--success); }
+        .toast.error i { color: var(--danger); }
+        .toast.info i { color: var(--info); }
+        .toast .toast-msg { font-size: 0.9rem; color: var(--text-dark); font-weight: 500; }
+        @keyframes toast-in { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .toast.removing { animation: toast-out 0.3s ease forwards; }
+        @keyframes toast-out { to { transform: translateX(120%); opacity: 0; } }
+
+        .audio-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(10, 15, 10, 0.97), rgba(60, 59, 110, 0.97)); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+        .audio-modal { background: var(--white); padding: 3.5rem; text-align: center; border-radius: 8px; max-width: 500px; border-top: 6px solid var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.5); position: relative; }
+        .audio-modal::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--flag-red), var(--white), var(--flag-blue)); }
+        .audio-modal .emblem { width: 90px; height: 90px; margin: 0 auto 1.5rem auto; background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--army-dark); font-size: 2.2rem; box-shadow: 0 0 30px rgba(197, 160, 89, 0.5); animation: emblem-glow 2s ease-in-out infinite; }
+
+        footer { background: linear-gradient(180deg, var(--army-dark) 0%, var(--army-darker) 100%); color: var(--white); padding: 4rem 0 2rem 0; border-top: 4px solid var(--gold); position: relative; }
+        footer::before { content: ''; position: absolute; top: 4px; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--flag-red) 0%, var(--flag-red) 33.33%, var(--white) 33.33%, var(--white) 66.66%, var(--flag-blue) 66.66%, var(--flag-blue) 100%); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
+        .footer-col h4 { color: var(--gold-bright); margin-bottom: 1.2rem; font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.7rem; }
+        .footer-col a { color: rgba(255,255,255,0.7); font-size: 0.88rem; cursor: pointer; }
+        .footer-col a:hover { color: var(--gold-bright); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+        .footer-bottom p { font-weight: 800; color: var(--gold-bright); margin-top: 0.5rem; font-size: 0.95rem; }
+
+        .page-nav { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(197, 160, 89, 0.3); }
+        .page-nav .btn { padding: 0.8rem 1.8rem; font-size: 0.8rem; }
+
+        @media (max-width: 1024px) { .dashboard-layout, .dashboard-layout.three-col, .delivery-layout, .sc-info-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--army-darker); flex-direction: column; padding: 1rem; gap: 0; }
+            .nav-links.show { display: flex; }
+            .nav-toggle { display: block; } .nav-cta { display: none; } .utility-bar { display: none; }
+            .footer-grid { grid-template-columns: 1fr; } .form-row { flex-direction: column; }
+            .message-letter { padding: 2rem; } .stats-grid { grid-template-columns: 1fr 1fr; }
+            .dashboard-hero { padding: 2rem; } .toast-container { right: 10px; left: 10px; } .toast { min-width: auto; }
+            .award-tiles { grid-template-columns: 1fr 1fr; }
+            .manifest-table { font-size: 0.8rem; } .manifest-table th, .manifest-table td { padding: 0.6rem 0.5rem; }
+            .ship-tracker { flex-wrap: wrap; gap: 1rem; }
+            .final-mailto-link { font-size: 1.1rem; padding: 1rem 1.5rem; }
+            .final-contact-box h3 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flag-bg-fixed"></div>
+    <div class="flag-stripes"></div>
+    <div class="flag-union"></div>
+    <div class="flag-overlay"></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div id="audioPromptOverlay" class="audio-modal-overlay">
+        <div class="audio-modal">
+            <div class="emblem"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2>Authorized Access</h2>
+            <p style="color: var(--text-light);">This Military Honour Portal uses official audio confirmations during the application and verification process. Please enable audio to proceed.</p>
+            <button class="btn btn-primary" style="margin-top: 2rem;" onclick="initAudioAndStart()">Enter Portal</button>
+        </div>
+    </div>
+
+    <div class="utility-bar">
+        <div class="container">
+            <div class="utility-left">
+                <span><i class="fa-solid fa-envelope"></i> humanitarianaidservicesaccess@gmail.com</span>
+                <span><i class="fa-solid fa-clock"></i> Mon-Fri 08:00 - 18:00 EST</span>
+            </div>
+            <div class="utility-right">
+                <a><i class="fa-solid fa-shield-halved"></i> Secure Portal</a>
+                <a><i class="fa-solid fa-lock"></i> Encrypted</a>
+                <a onclick="showToast('info', 'Accessibility options opened.')"><i class="fa-solid fa-universal-access"></i> Accessibility</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="navigateTo('home')">
+                <div class="seal"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>WOUNDED HEROES<br><span class="logo-sub">FAMILY ASSISTANCE & MILITARY HONOUR</span></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a data-page="home" class="active" onclick="navigateTo('home')">Home</a></li>
+                <li><a data-page="about" onclick="navigateTo('about')">About</a></li>
+                <li><a data-page="awards" onclick="navigateTo('awards')">Awards</a></li>
+                <li><a data-page="message" onclick="navigateTo('message')">Soldier's Voice</a></li>
+                <li><a data-page="portal" onclick="navigateTo('portal')">Apply</a></li>
+                <li><a data-page="dashboard" onclick="navigateTo('dashboard')">Dashboard</a></li>
+                <li><a data-page="delivery" onclick="navigateTo('delivery')">Delivery</a></li>
+                <li><a data-page="verify" onclick="navigateTo('verify')">Verify</a></li>
+                <li><a data-page="resources" onclick="navigateTo('resources')">Resources</a></li>
+            </ul>
+            <div class="nav-cta"><a class="btn btn-gold" onclick="navigateTo('portal')">Apply Now</a></div>
+            <button class="nav-toggle" onclick="toggleNav()"><i class="fa-solid fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <!-- ============ HOME ============ -->
+    <div id="page-home" class="page active">
+        <section class="hero">
+            <i class="fa-solid fa-star floating-star" style="top: 15%; left: 10%; animation-delay: 0s;"></i>
+            <i class="fa-solid fa-star floating-star" style="top: 25%; left: 85%; animation-delay: 1s;"></i>
+            <i class="fa-solid fa-star floating-star" style="top: 65%; left: 8%; animation-delay: 2s;"></i>
+            <i class="fa-solid fa-star floating-star" style="top: 75%; left: 92%; animation-delay: 3s;"></i>
+            <i class="fa-solid fa-star floating-star" style="top: 40%; left: 5%; animation-delay: 4s;"></i>
+            <div class="hero-emblem"><i class="fa-solid fa-medal"></i></div>
+            <h1>WOUNDED MILITARY HEROES</h1>
+            <div class="tagline">Honouring Her Sacrifice. Recognizing Her Courage. Supporting Her Recovery.</div>
+            <p>A dignified recognition programme for military personnel who have sustained serious injuries in service to their country. When a wounded hero cannot stand alone, we stand beside her — and welcome her family to do so with her authorization.</p>
+            <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" onclick="navigateTo('portal')"><i class="fa-solid fa-user-shield"></i> Family Representative Portal</a>
+                <a class="btn btn-outline btn-lg" style="color: var(--white); border-color: var(--white);" onclick="navigateTo('awards')">View Proposed Recognition</a>
+            </div>
+        </section>
+        <div class="stats-bar">
+            <div class="container"><div class="stats-grid">
+                <div class="stat-item"><div class="stat-num"><i class="fa-solid fa-star"></i></div><div class="stat-label">Honour</div></div>
+                <div class="stat-item"><div class="stat-num"><i class="fa-solid fa-shield-halved"></i></div><div class="stat-label">Courage</div></div>
+                <div class="stat-item"><div class="stat-num"><i class="fa-solid fa-heart"></i></div><div class="stat-label">Sacrifice</div></div>
+                <div class="stat-item"><div class="stat-num"><i class="fa-solid fa-hand-holding-medical"></i></div><div class="stat-label">Recovery</div></div>
+            </div></div>
+        </div>
+        <section style="padding: 4rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">Programme Overview</div>
+                    <h2>When a Hero Cannot Stand Alone,<br>We Stand Beside Her.</h2>
+                    <div class="divider-gold"></div>
+                    <p style="font-size: 1.08rem;">This programme recognizes military personnel who have sustained serious injuries or medical conditions while serving their country. We understand that some wounded soldiers may be physically unable to access the portal or complete the application process themselves. Therefore, an authorized husband, wife, family member, or legal representative may request permission to manage the application on the injured soldier's behalf.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="feature-card"><i class="fa-solid fa-hand-holding-medical" style="color: var(--flag-red);"></i><h4>Dignified Care</h4><p>Every application is handled with the respect owed to those who served.</p></div>
+                    <div class="feature-card"><i class="fa-solid fa-people-roof" style="color: var(--flag-blue);"></i><h4>Family Representation</h4><p>Spouses and authorized family may act on the soldier's behalf.</p></div>
+                    <div class="feature-card"><i class="fa-solid fa-shield-halved" style="color: var(--gold-deep);"></i><h4>Verified Process</h4><p>All decisions confirmed by the responsible awarding institution.</p></div>
+                    <div class="feature-card"><i class="fa-solid fa-certificate" style="color: var(--flag-red);"></i><h4>Official Recognition</h4><p>Honour, courage, and sacrifice formally recognized.</p></div>
+                    <div class="feature-card"><i class="fa-solid fa-heart-pulse" style="color: var(--success);"></i><h4>Wellness & Recovery</h4><p>Dedicated focus on long-term rehabilitation, mental well-being, and continuous health monitoring.</p></div>
+                </div>
+                <div class="page-nav"><span></span><a class="btn btn-primary" onclick="navigateTo('about')">Learn More <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <div id="page-about" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>About the Programme</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">About the Programme</div><h2>Wounded Military Heroes Special Recognition</h2><div class="divider-gold"></div></div>
+                <div style="max-width: 820px; margin: 0 auto;">
+                    <p style="font-size: 1.1rem;">The Wounded Military Heroes Special Recognition Programme is designed to recognize military personnel who have sustained serious injuries or medical conditions while serving their country.</p>
+                    <p>We understand that some wounded soldiers may be physically unable to access the website or complete the award application process themselves. Therefore, an authorized husband, wife, family member, or legal representative may request permission to manage the application on behalf of the injured soldier.</p>
+                    <p>Our purpose is to ensure that wounded military heroes receive dignity, respect, recognition, and appropriate support for their service and sacrifice.</p>
+                </div>
+                <h3 style="text-align: center; margin: 3rem 0 2rem 0; color: var(--army-dark);">Application Process</h3>
+                <div class="timeline">
+                    <div class="timeline-item completed"><h4>1. Representative Request</h4><p>The husband or authorized family member requests representative access.</p></div>
+                    <div class="timeline-item"><h4>2. Identity Verification</h4><p>The soldier's identity and military batch number are verified.</p></div>
+                    <div class="timeline-item"><h4>3. Documentation Review</h4><p>Supporting medical and service documentation is reviewed securely.</p></div>
+                    <div class="timeline-item"><h4>4. Eligibility Determination</h4><p>The responsible authority determines eligibility.</p></div>
+                    <div class="timeline-item"><h4>5. Decision Communication</h4><p>The award decision is communicated to the representative.</p></div>
+                    <div class="timeline-item"><h4>6. Formal Issuance</h4><p>Approved awards and recognition documents are formally issued.</p></div>
+                    <div class="timeline-item"><h4>7. Ongoing Wellness Check</h4><p>Post-award follow-ups to ensure the wounded hero's continued recovery, adjusting support as needed.</p></div>
+                </div>
+                <div class="page-nav"><a class="btn btn-outline" onclick="navigateTo('home')"><i class="fa-solid fa-arrow-left"></i> Back</a><a class="btn btn-primary" onclick="navigateTo('awards')">View Awards <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ AWARDS ============ -->
+    <div id="page-awards" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Proposed Recognition Package</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">Proposed Recognition</div><h2>Special Recognition Package</h2><div class="divider-gold"></div><p>The following proposed benefits are subject to official programme approval, eligibility verification, and confirmation by the responsible awarding institution.</p></div>
+                <div class="awards-grid">
+                    <div class="award-card"><div class="award-icon-wrap"><div class="award-amount">$120,000</div></div><div class="award-body"><h3>Financial Recognition Award</h3><p>Proposed financial recognition honouring the soldier's service and supporting recovery.</p><span class="status-tag">Proposed</span></div></div>
+                    <div class="award-card"><img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2070&auto=format&fit=crop" alt="Tesla Vehicle" class="award-tesla-img"><div class="award-body"><h3>Tesla Vehicle Recognition Gift</h3><p>Proposed vehicle recognition gift for the wounded hero's mobility and dignity.</p><span class="status-tag">Proposed</span></div></div>
+                    <div class="award-card"><div class="award-icon-wrap"><i class="fa-solid fa-medal award-icon"></i></div><div class="award-body"><h3>Gold Medal of Military Honour</h3><p>Proposed formal recognition of courage and sacrifice in service.</p><span class="status-tag">Proposed</span></div></div>
+                    <div class="award-card"><div class="award-icon-wrap"><i class="fa-solid fa-certificate award-icon"></i></div><div class="award-body"><h3>Certificate of Honour</h3><p>Official certificate, if approved and issued by the awarding institution.</p><span class="status-tag">Proposed</span></div></div>
+                </div>
+                <div class="page-nav"><a class="btn btn-outline" onclick="navigateTo('about')"><i class="fa-solid fa-arrow-left"></i> Back</a><a class="btn btn-primary" onclick="navigateTo('message')">Soldier's Voice <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ MESSAGE ============ -->
+    <div id="page-message" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Soldier's Voice</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">A Voice From the Wounded</div><h2>My Message as a Wounded Female Soldier</h2><div class="divider-gold"></div></div>
+                <div class="message-letter">
+                    <h3>FROM THE DESK OF THE SOLDIER</h3>
+                    <p>I am a female military personnel who sustained injuries while serving my country. Due to my present medical condition, I may not always be physically capable of handling administrative processes or accessing the award portal myself.</p>
+                    <p>I therefore wish to authorize my husband to represent me in the process of submitting my application, providing the necessary documentation, communicating with the relevant authorities, and following up on my recognition request.</p>
+                    <p>My request is for consideration under the Wounded Military Heroes Special Recognition Programme, including the proposed $120,000 financial recognition, Tesla vehicle, Gold Medal of Military Honour, and Certificate of Honour.</p>
+                    <p>I respectfully request that my service record, medical circumstances, and contributions be reviewed by the appropriate authorized institution. I remain proud of my service and grateful for the opportunity to have my sacrifice recognized.</p>
+                    <div class="signature-block"><div class="sig-line">With Honour, Courage, and Dignity.</div><div class="sig-sub" style="margin-top: 0.5rem; color: var(--text-light); font-size: 0.85rem;">— The Wounded Female Soldier</div></div>
+                </div>
+                <div class="page-nav"><a class="btn btn-outline" onclick="navigateTo('awards')"><i class="fa-solid fa-arrow-left"></i> Back</a><a class="btn btn-gold" onclick="navigateTo('portal')">Begin Application <i class="fa-solid fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ PORTAL ============ -->
+    <div id="page-portal" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Family Representative Portal</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">Authorized Access</div><h2>Family Representative Portal</h2><div class="divider-gold"></div><p>The soldier's husband, wife, or authorized family member may request representative access to submit her application, upload documentation, and communicate with the official award administrator on her behalf.</p></div>
+                <div class="form-container">
+                    <div class="workflow-tracker">
+                        <div id="step1" class="step active"><div class="step-icon"><i class="fa-solid fa-user-pen"></i></div><p>Representative</p></div>
+                        <div id="step2" class="step"><div class="step-icon"><i class="fa-solid fa-id-card"></i></div><p>Soldier Details</p></div>
+                        <div id="step3" class="step"><div class="step-icon"><i class="fa-solid fa-clock"></i></div><p>Review</p></div>
+                        <div id="step4" class="step"><div class="step-icon"><i class="fa-solid fa-award"></i></div><p>Decision</p></div>
+                    </div>
+                    <div id="form-step-1">
+                        <h3 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-shield" style="color: var(--gold-deep); margin-right: 10px;"></i>Representative Information</h3>
+                        <div class="form-row">
+                            <div class="form-group"><label>Husband's Full Name</label><input type="text" id="repName" class="form-control" placeholder="e.g. Michael Carter"></div>
+                            <div class="form-group"><label>Relationship</label><select id="relationship" class="form-control"><option value="Husband">Husband</option><option value="Wife">Wife</option><option value="Family Member">Family Member</option><option value="Legal Representative">Legal Representative</option></select></div>
+                        </div>
+                        <div class="form-group"><label>Representative Email</label><input type="email" id="repEmail" class="form-control" placeholder="rep@example.com"></div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="nextStep(1)">Continue to Soldier Details <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <div id="form-step-2" style="display: none;">
+                        <h3 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-id-card" style="color: var(--gold-deep); margin-right: 10px;"></i>Wounded Soldier Details</h3>
+                        <div class="form-group"><label>Wounded Soldier's Full Name</label><input type="text" id="soldierName" class="form-control" placeholder="e.g. Sergeant Emily Carter"></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Military Batch Number</label><input type="text" id="batchNum" class="form-control" placeholder="e.g. USA-2021-BN-04827"></div>
+                            <div class="form-group"><label>Branch of Service</label><select id="branch" class="form-control"><option>United States Army</option><option>United States Navy</option><option>United States Marine Corps</option><option>United States Air Force</option><option>United States Coast Guard</option><option>United States Space Force</option></select></div>
+                        </div>
+                        <div class="form-group"><label>Brief Description of Service & Circumstances</label><textarea id="circumstances" class="form-control" rows="3" placeholder="Briefly describe service record and circumstances of injury..."></textarea></div>
+                        <div class="form-group"><label>Supporting Documents</label><div class="upload-zone" onclick="showToast('info', 'Document upload processing.')"><i class="fa-solid fa-cloud-arrow-up"></i><p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-light);">Click to upload service records, medical documents, or authorization letters</p></div></div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn btn-outline" style="flex: 1;" onclick="prevStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                            <button class="btn btn-primary" style="flex: 2;" onclick="submitApplication()">Submit Representative Application <i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                    <div id="review-screen" style="display: none;">
+                        <div class="review-screen">
+                            <div class="review-emblem"><i class="fa-solid fa-shield-halved"></i></div>
+                            <h2 style="margin-top: 1rem;">APPLICATION UNDER REVIEW</h2>
+                            <p style="color: var(--text-light);">Thank you for submitting the representative application. The information has been received and is awaiting verification by the responsible awarding institution.</p>
+                            <div class="countdown-timer" id="timer">02:00</div>
+                            <div class="progress-bar-container"><div class="progress-bar-fill" id="progressBar"></div></div>
+                            <div style="background: var(--cream); padding: 1rem; border-radius: 4px; margin: 1.5rem 0; border-left: 3px solid var(--gold);"><p style="margin: 0; font-size: 0.9rem;"><strong>Reference Number:</strong> <span id="refNum" style="color: var(--gold-deep); font-weight: 700;">WH-2024-XXXX</span></p></div>
+                            <button id="continueBtn" class="btn btn-gold" style="display: none; margin-top: 1.5rem;" onclick="goToAwardDashboard()">Continue to Award Dashboard <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ DASHBOARD ============ -->
+    <div id="page-dashboard" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Honourable Recognition Dashboard</span></div></div></div>
+        <section style="padding: 2.5rem 0;">
+            <div class="container">
+                <div id="dashboard-empty" class="empty-state">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <h2>No Active Application</h2>
+                    <p>You have not yet submitted a representative application. Please visit the Family Representative Portal to begin the recognition process on behalf of your wounded soldier.</p>
+                    <button class="btn btn-primary" onclick="navigateTo('portal')">Go to Application Portal <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div id="award-dashboard" style="display: none;">
+                    <div class="dashboard-hero">
+                        <div class="dh-top">
+                            <div class="dh-title">
+                                <h2>Honourable Recognition Dashboard</h2>
+                                <div class="dh-sub">Welcome, <span id="displayRepName">Representative</span>. Below is the live status of your application.</div>
+                            </div>
+                            <div class="dh-status-badge"><span class="dot"></span> Under Verification</div>
+                        </div>
+                        <div class="dh-ref">
+                            <span class="dh-ref-label">Reference Number</span>
+                            <span class="dh-ref-num" id="displayRef">WH-XXXX-XXXX</span>
+                            <span class="dh-ref-label" style="margin-left: 1.5rem;">Submitted</span>
+                            <span class="dh-ref-num" id="displayDate" style="font-size: 0.95rem;">—</span>
+                        </div>
+                    </div>
+
+                    <div class="metrics-row">
+                        <div class="metric-card green"><div class="mc-icon"><i class="fa-solid fa-circle-check"></i></div><div class="mc-label">Application Progress</div><div class="mc-value">75%</div><div class="mc-trend"><i class="fa-solid fa-arrow-up"></i>On track</div></div>
+                        <div class="metric-card gold"><div class="mc-icon"><i class="fa-solid fa-file-shield"></i></div><div class="mc-label">Documents Verified</div><div class="mc-value">3 / 4</div><div class="mc-trend" style="color: var(--warning);"><i class="fa-solid fa-clock" style="color: var(--warning);"></i>1 pending</div></div>
+                        <div class="metric-card blue"><div class="mc-icon"><i class="fa-solid fa-calendar-day"></i></div><div class="mc-label">Days Since Submission</div><div class="mc-value">1</div><div class="mc-trend">Submitted today</div></div>
+                        <div class="metric-card red"><div class="mc-icon"><i class="fa-solid fa-hourglass-half"></i></div><div class="mc-label">Review Status</div><div class="mc-value">Pending</div><div class="mc-trend" style="color: var(--danger);"><i class="fa-solid fa-circle-exclamation" style="color: var(--danger);"></i>Awaiting decision</div></div>
+                    </div>
+
+                    <!-- DELIVERY CALLOUT -->
+                    <div class="delivery-callout">
+                        <div class="dc-content">
+                            <div class="dc-text">
+                                <div class="dc-icon-circle"><i class="fa-solid fa-truck-fast"></i></div>
+                                <h3>Delivery & Shipment Center</h3>
+                                <p>Your recognition package is ready to be prepared for shipment. Review your goods and authorize delivery to the wounded soldier's address.</p>
+                                <div class="dc-stats">
+                                    <div class="dc-stat"><i class="fa-solid fa-box"></i> 9 Items Ready</div>
+                                    <div class="dc-stat"><i class="fa-solid fa-car"></i> 1 Vehicle</div>
+                                    <div class="dc-stat"><i class="fa-solid fa-sack-dollar"></i> $120,000 Award</div>
+                                    <div class="dc-stat"><i class="fa-solid fa-shield-halved"></i> Fully Insured</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-gold btn-lg" onclick="navigateTo('delivery')">
+                                <i class="fa-solid fa-truck-fast"></i> Add Delivery Address
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-layout">
+                        <div>
+                            <div class="dash-panel" style="margin-bottom: 1.5rem;">
+                                <div class="panel-header"><h4><i class="fa-solid fa-users"></i>Registered Parties</h4></div>
+                                <div class="person-row">
+                                    <div class="person-avatar gold"><i class="fa-solid fa-user-shield"></i></div>
+                                    <div class="person-info"><div class="person-role">Authorized Representative</div><div class="person-name" id="displayRepName2">Representative Name</div><div class="person-meta">Husband · Authorized Contact</div></div>
+                                </div>
+                                <div class="person-row">
+                                    <div class="person-avatar dark"><i class="fa-solid fa-user"></i></div>
+                                    <div class="person-info"><div class="person-role">Wounded Soldier</div><div class="person-name" id="displaySoldierName">Soldier Name</div><div class="person-meta" id="displayBranch">Branch of Service</div></div>
+                                </div>
+                            </div>
+                            <div class="dash-panel" style="margin-bottom: 1.5rem;">
+                                <div class="panel-header"><h4><i class="fa-solid fa-file-shield"></i>Application Details</h4></div>
+                                <div class="info-list">
+                                    <div class="info-item"><span class="info-label">Reference Number</span><span class="info-value mono" id="displayRef2">WH-XXXX-XXXX</span></div>
+                                    <div class="info-item"><span class="info-label">Military Batch No.</span><span class="info-value mono" id="displayBatch">—</span></div>
+                                    <div class="info-item"><span class="info-label">Branch</span><span class="info-value" id="displayBranch2">—</span></div>
+                                    <div class="info-item"><span class="info-label">Submission Date</span><span class="info-value" id="displayDate2">—</span></div>
+                                    <div class="info-item"><span class="info-label">Current Status</span><span class="info-value status">Under Verification</span></div>
+                                </div>
+                            </div>
+                            <div class="dash-panel">
+                                <div class="panel-header"><h4><i class="fa-solid fa-bolt"></i>Quick Actions</h4></div>
+                                <div class="quick-actions">
+                                    <div class="qa-btn" onclick="showToast('success', 'Application receipt downloaded successfully.')"><i class="fa-solid fa-download"></i><div class="qa-label">Download Receipt</div><div class="qa-sub">PDF · 124 KB</div></div>
+                                    <a href="mailto:humanitarianaidservicesaccess@gmail.com?subject=Application Support" class="qa-btn"><i class="fa-solid fa-headset"></i><span class="qa-label">Email Support</span><span class="qa-sub">Direct email</span></a>
+                                    <div class="qa-btn" onclick="navigateTo('delivery')"><i class="fa-solid fa-truck-fast"></i><div class="qa-label">Track Shipment</div><div class="qa-sub">Delivery center</div></div>
+                                    <div class="qa-btn" onclick="showToast('info', 'Sharing application reference copied.')"><i class="fa-solid fa-share-nodes"></i><div class="qa-label">Share Reference</div><div class="qa-sub">Copy link</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dash-panel" style="margin-bottom: 1.5rem;">
+                                <div class="panel-header"><h4><i class="fa-solid fa-list-check"></i>Application Progress</h4><span class="panel-action" onclick="showToast('info', 'Detailed timeline opened.')">View All</span></div>
+                                <div class="progress-vertical">
+                                    <div class="pv-step completed"><div class="pv-dot"><i class="fa-solid fa-check"></i></div><div class="pv-text"><div class="pv-title">Representative Request Received</div><div class="pv-desc">Husband authorized as representative</div></div><div class="pv-date">STEP 1</div></div>
+                                    <div class="pv-step completed"><div class="pv-dot"><i class="fa-solid fa-check"></i></div><div class="pv-text"><div class="pv-title">Soldier Identity Verified</div><div class="pv-desc">Military batch number confirmed</div></div><div class="pv-date">STEP 2</div></div>
+                                    <div class="pv-step completed"><div class="pv-dot"><i class="fa-solid fa-check"></i></div><div class="pv-text"><div class="pv-title">Application Submitted</div><div class="pv-desc">Joint application received and logged</div></div><div class="pv-date">STEP 3</div></div>
+                                    <div class="pv-step active"><div class="pv-dot"><i class="fa-solid fa-clock"></i></div><div class="pv-text"><div class="pv-title">Under Review</div><div class="pv-desc">Awaiting institution decision</div></div><div class="pv-date">STEP 4</div></div>
+                                    <div class="pv-step"><div class="pv-dot">5</div><div class="pv-text"><div class="pv-title">Decision Communication</div><div class="pv-desc">Official award decision rendered</div></div><div class="pv-date">STEP 5</div></div>
+                                    <div class="pv-step"><div class="pv-dot">6</div><div class="pv-text"><div class="pv-title">Formal Award Issuance</div><div class="pv-desc">If approved, recognition documents issued</div></div><div class="pv-date">STEP 6</div></div>
+                                </div>
+                            </div>
+                            <div class="dash-panel" style="margin-bottom: 1.5rem;">
+                                <div class="panel-header"><h4><i class="fa-solid fa-folder-check"></i>Document Checklist</h4><span class="panel-action" onclick="showToast('info', 'Upload dialog opened.')">+ Upload</span></div>
+                                <div class="doc-item"><div class="doc-icon verified"><i class="fa-solid fa-check"></i></div><div class="doc-info"><div class="doc-name">Representative Authorization Form</div><div class="doc-status verified">Verified</div></div></div>
+                                <div class="doc-item"><div class="doc-icon verified"><i class="fa-solid fa-check"></i></div><div class="doc-info"><div class="doc-name">Military Service Record</div><div class="doc-status verified">Verified</div></div></div>
+                                <div class="doc-item"><div class="doc-icon verified"><i class="fa-solid fa-check"></i></div><div class="doc-info"><div class="doc-name">Medical Documentation</div><div class="doc-status verified">Verified</div></div></div>
+                                <div class="doc-item"><div class="doc-icon pending"><i class="fa-solid fa-clock"></i></div><div class="doc-info"><div class="doc-name">Spousal Authorization Letter</div><div class="doc-status pending">Pending Review</div></div></div>
+                            </div>
+                            <div class="dash-panel">
+                                <div class="panel-header"><h4><i class="fa-solid fa-award"></i>Proposed Recognition Package</h4></div>
+                                <div class="award-showcase">
+                                    <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2070&auto=format&fit=crop" alt="Tesla Recognition Vehicle">
+                                    <div class="caption"><strong>Tesla Vehicle Recognition Gift</strong><div class="sub">Pending official authorization by the awarding institution</div></div>
+                                </div>
+                                <div class="award-tiles">
+                                    <div class="award-tile"><i class="fa-solid fa-sack-dollar"></i><div class="at-name">$120,000</div><div class="at-status">Proposed</div></div>
+                                    <div class="award-tile"><i class="fa-solid fa-medal"></i><div class="at-name">Gold Medal</div><div class="at-status">Proposed</div></div>
+                                    <div class="award-tile"><i class="fa-solid fa-certificate"></i><div class="at-name">Certificate</div><div class="at-status">Proposed</div></div>
+                                    <div class="award-tile"><i class="fa-solid fa-car"></i><div class="at-name">Tesla Vehicle</div><div class="at-status">Proposed</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-layout three-col">
+                        <div class="dash-panel">
+                            <div class="panel-header"><h4><i class="fa-solid fa-comments"></i>Communication</h4><span class="panel-action" onclick="showToast('info', 'All messages opened.')">View All</span></div>
+                            <div class="comm-thread">
+                                <div class="comm-msg received"><div class="comm-meta"><span class="comm-from">Award Office</span><span class="comm-date">10:42 AM</span></div><div class="comm-body">Your application has been received and is now under verification. We will contact you within 5-7 business days.</div></div>
+                                <div class="comm-msg sent"><div class="comm-meta"><span class="comm-from">You</span><span class="comm-date">11:15 AM</span></div><div class="comm-body">Thank you. Please let me know if any additional documentation is required from my wife's medical team.</div></div>
+                                <div class="comm-msg received"><div class="comm-meta"><span class="comm-from">Award Office</span><span class="comm-date">11:30 AM</span></div><div class="comm-body">Noted. The Spousal Authorization Letter is currently under review. No further action needed at this time.</div></div>
+                            </div>
+                            <div class="comm-input"><input type="text" placeholder="Type a message..."><button class="btn btn-primary btn-sm" onclick="sendCommMessage()"><i class="fa-solid fa-paper-plane"></i></button></div>
+                        </div>
+                        <div class="dash-panel">
+                            <div class="panel-header"><h4><i class="fa-solid fa-clock-rotate-left"></i>Activity Log</h4></div>
+                            <div class="activity-item"><div class="activity-dot success"><i class="fa-solid fa-check"></i></div><div class="activity-text"><div class="activity-title">Application submitted successfully</div><div class="activity-time">JUST NOW</div></div></div>
+                            <div class="activity-item"><div class="activity-dot gold"><i class="fa-solid fa-file"></i></div><div class="activity-text"><div class="activity-title">Spousal authorization uploaded</div><div class="activity-time">2 MIN AGO</div></div></div>
+                            <div class="activity-item"><div class="activity-dot info"><i class="fa-solid fa-shield-halved"></i></div><div class="activity-text"><div class="activity-title">Identity verification completed</div><div class="activity-time">5 MIN AGO</div></div></div>
+                            <div class="activity-item"><div class="activity-dot success"><i class="fa-solid fa-user-check"></i></div><div class="activity-text"><div class="activity-title">Representative access approved</div><div class="activity-time">8 MIN AGO</div></div></div>
+                            <div class="activity-item"><div class="activity-dot gold"><i class="fa-solid fa-flag"></i></div><div class="activity-text"><div class="activity-title">Programme eligibility confirmed</div><div class="activity-time">12 MIN AGO</div></div></div>
+                        </div>
+                        <div>
+                            <div class="next-steps"><h4><i class="fa-solid fa-route"></i> What Happens Next</h4><ol><li>The awarding institution reviews all submitted documents.</li><li>Medical and service records are verified securely.</li><li>Eligibility is determined by the responsible authority.</li><li>You will receive a secure notification with the decision.</li><li>If approved, formal issuance of awards begins.</li></ol></div>
+                            <div class="dash-panel"><div class="panel-header"><h4><i class="fa-solid fa-bell"></i>Notifications</h4></div><div style="font-size: 0.85rem; color: var(--text-mid); line-height: 1.8;"><p style="margin: 0 0 0.5rem 0;"><i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 6px;"></i> Application received</p><p style="margin: 0 0 0.5rem 0;"><i class="fa-solid fa-clock" style="color: var(--warning); margin-right: 6px;"></i> 1 document under review</p><p style="margin: 0;"><i class="fa-solid fa-hourglass-half" style="color: var(--info); margin-right: 6px;"></i> Awaiting institution decision</p></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ DELIVERY PAGE ============ -->
+    <div id="page-delivery" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><a onclick="navigateTo('dashboard')">Dashboard</a><i class="fa-solid fa-chevron-right"></i><span>Delivery & Shipment Center</span></div></div></div>
+        
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">Delivery & Shipment</div>
+                    <h2>Shipment Authorization Center</h2>
+                    <div class="divider-gold"></div>
+                    <p>Review your complete recognition package manifest and authorize shipment to the wounded soldier's delivery address. All items are fully insured and shipped securely.</p>
+                </div>
+
+                <!-- DELIVERY FORM VIEW -->
+                <div id="delivery-form-view">
+                    
+                    <!-- GOODS MANIFEST -->
+                    <div class="delivery-manifest">
+                        <div class="manifest-header">
+                            <h3><i class="fa-solid fa-boxes-stacked"></i> Shipment Manifest</h3>
+                            <div class="mh-meta">REF: <span id="manifestRef">WH-2024-XXXX</span> · 10 ITEMS</div>
+                        </div>
+                        <table class="manifest-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">#</th>
+                                    <th>Item</th>
+                                    <th style="width: 80px;">Qty</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="manifest-tesla-row">
+                                    <td>01</td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=2070&auto=format&fit=crop" alt="Tesla" class="manifest-tesla-img-small">
+                                            <div>
+                                                <div class="manifest-item-name">Tesla Model 3 — Recognition Vehicle</div>
+                                                <div class="manifest-item-desc">Premium electric vehicle, fully insured for transport</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Vehicle</td>
+                                    <td><span class="manifest-status ready">Ready</span></td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-sack-dollar"></i></div><div><div class="manifest-item-name">$120,000 Financial Recognition Award</div><div class="manifest-item-desc">Certified bank draft, secure transport</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Financial</td>
+                                    <td><span class="manifest-status ready">Ready</span></td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-medal"></i></div><div><div class="manifest-item-name">Gold Medal of Military Honour</div><div class="manifest-item-desc">24k gold-plated, presentation case included</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Medal</td>
+                                    <td><span class="manifest-status ready">Ready</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-certificate"></i></div><div><div class="manifest-item-name">Certificate of Honour</div><div class="manifest-item-desc">Framed official certificate with seal</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Document</td>
+                                    <td><span class="manifest-status ready">Ready</span></td>
+                                </tr>
+                                <tr>
+                                    <td>05</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-mobile-screen"></i></div><div><div class="manifest-item-name">iPhone 17</div><div class="manifest-item-desc">Latest model, sealed packaging</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Electronics</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>06</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-clock"></i></div><div><div class="manifest-item-name">Smartwatch</div><div class="manifest-item-desc">Health monitoring smartwatch</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Electronics</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>07</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-tv"></i></div><div><div class="manifest-item-name">Television</div><div class="manifest-item-desc">55" smart television</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Electronics</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>08</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-snowflake"></i></div><div><div class="manifest-item-name">Refrigerator</div><div class="manifest-item-desc">Energy-efficient household refrigerator</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Appliance</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>09</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-fire-burner"></i></div><div><div class="manifest-item-name">Cooking Stove</div><div class="manifest-item-desc">4-burner gas/electric cooking stove</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Appliance</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td><div style="display: flex; align-items: center; gap: 1rem;"><div class="manifest-item-icon"><i class="fa-solid fa-bed"></i></div><div><div class="manifest-item-name">Mattresses & Bedding Set</div><div class="manifest-item-desc">Complete bedding package for recovery</div></div></div></td>
+                                    <td class="manifest-qty">1</td>
+                                    <td>Household</td>
+                                    <td><span class="manifest-status packed">Packed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="manifest-summary">
+                            <div>
+                                <div class="ms-label">Total Items</div>
+                                <div class="ms-value">10 Items</div>
+                            </div>
+                            <div>
+                                <div class="ms-label">Insured Value</div>
+                                <div class="ms-value">$245,000</div>
+                            </div>
+                            <div>
+                                <div class="ms-label">Shipping Cost</div>
+                                <div class="ms-value" style="color: var(--success);">Included</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DELIVERY FORM + SUMMARY -->
+                    <div class="delivery-layout">
+                        <!-- Address Form -->
+                        <div class="delivery-form-panel">
+                            <h3><i class="fa-solid fa-location-dot" style="color: var(--gold-deep); margin-right: 10px;"></i>Delivery Address</h3>
+                            <p class="dfp-sub">Enter the address where the recognition package will be delivered. This should be the wounded soldier's residence or authorized receiving address.</p>
+                            
+                            <div class="form-group">
+                                <label>Recipient Full Name</label>
+                                <input type="text" id="delivName" class="form-control" placeholder="e.g. Sergeant Emily Carter">
+                            </div>
+                            <div class="form-group">
+                                <label>Street Address</label>
+                                <input type="text" id="delivAddress" class="form-control" placeholder="e.g. 123 Freedom Avenue">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Apartment / Suite</label>
+                                    <input type="text" id="delivApt" class="form-control" placeholder="Apt, Suite, etc. (optional)">
+                                </div>
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" id="delivCity" class="form-control" placeholder="e.g. Arlington">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>State / Province</label>
+                                    <input type="text" id="delivState" class="form-control" placeholder="e.g. Virginia">
+                                </div>
+                                <div class="form-group">
+                                    <label>Postal Code</label>
+                                    <input type="text" id="delivZip" class="form-control" placeholder="e.g. 22201">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" id="delivCountry" class="form-control" placeholder="e.g. United States" value="United States">
+                            </div>
+                            <div class="form-group">
+                                <label>Delivery Instructions (Optional)</label>
+                                <textarea id="delivInstructions" class="form-control" rows="2" placeholder="Gate code, delivery notes, preferred time, etc."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Summary & Authorization -->
+                        <div>
+                            <div class="summary-panel" style="margin-bottom: 1.5rem;">
+                                <h3><i class="fa-solid fa-clipboard-check"></i> Shipment Summary</h3>
+                                <div class="summary-row"><span class="sr-label">Reference Number</span><span class="sr-value gold" id="summaryRef">WH-XXXX-XXXX</span></div>
+                                <div class="summary-row"><span class="sr-label">Total Items</span><span class="sr-value">10 Items</span></div>
+                                <div class="summary-row"><span class="sr-label">Vehicle</span><span class="sr-value">Tesla Model 3</span></div>
+                                <div class="summary-row"><span class="sr-label">Financial Award</span><span class="sr-value">$120,000</span></div>
+                                <div class="summary-row"><span class="sr-label">Insured Value</span><span class="sr-value">$245,000</span></div>
+                                <div class="summary-row"><span class="sr-label">Carrier</span><span class="sr-value">Secure Military Logistics</span></div>
+                                <div class="summary-row"><span class="sr-label">Insurance</span><span class="sr-value">Full Coverage</span></div>
+                                <div class="summary-row"><span class="sr-label">Shipping Cost</span><span class="sr-value gold">Fully Covered</span></div>
+                            </div>
+
+                            <div class="delivery-form-panel" style="padding: 2rem;">
+                                <h4 style="margin-bottom: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--gold-deep); margin-right: 8px;"></i>Shipment Authorization</h4>
+                                <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1.5rem;">By authorizing this shipment, you confirm that the delivery address is correct and that the recipient is authorized to receive the recognition package.</p>
+                                
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="auth1">
+                                    <label for="auth1">I confirm that the <strong>delivery address</strong> provided above is accurate and complete.</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="auth2">
+                                    <label for="auth2">I authorize <strong>Secure Military Logistics</strong> to transport the recognition package to the specified address.</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="auth3">
+                                    <label for="auth3">I understand that a <strong>signature and ID verification</strong> will be required upon delivery.</label>
+                                </div>
+
+                                <button class="btn btn-gold" style="width: 100%; margin-top: 1rem;" onclick="authorizeShipment()">
+                                    <i class="fa-solid fa-check-double"></i> Authorize Shipment
+                                </button>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+                                    <i class="fa-solid fa-lock"></i> Secured by 256-bit encryption · Authorized representatives only
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHIPMENT CONFIRMED VIEW -->
+                <div id="shipment-confirmed" class="shipment-confirmed">
+                    <div class="sc-emblem"><i class="fa-solid fa-check"></i></div>
+                    <h2>Shipment Authorized Successfully</h2>
+                    <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Your delivery address has been recorded and options authorized. A tracking number has been generated.</p>
+                    
+                    <div class="sc-tracking-box">
+                        <div class="sc-tracking-label">Tracking Number</div>
+                        <div class="sc-tracking-num" id="trackingNum">WH-SHP-XXXX-XXXX</div>
+                        <div style="margin-top: 1rem;">
+                            <span class="carrier-badge"><i class="fa-solid fa-truck-fast"></i> Secure Military Logistics</span>
+                        </div>
+                    </div>
+
+                    <!-- Shipment Progress Tracker -->
+                    <div class="ship-tracker">
+                        <div class="ship-step completed">
+                            <div class="ship-icon"><i class="fa-solid fa-check"></i></div>
+                            <p>Authorized</p>
+                            <div class="ship-date" id="shipDate1">TODAY</div>
+                        </div>
+                        <div class="ship-step active">
+                            <div class="ship-icon"><i class="fa-solid fa-box-open"></i></div>
+                            <p>Preparing</p>
+                            <div class="ship-date">IN PROGRESS</div>
+                        </div>
+                        <div class="ship-step">
+                            <div class="ship-icon"><i class="fa-solid fa-warehouse"></i></div>
+                            <p>Dispatched</p>
+                            <div class="ship-date">PENDING</div>
+                        </div>
+                        <div class="ship-step">
+                            <div class="ship-icon"><i class="fa-solid fa-truck"></i></div>
+                            <p>In Transit</p>
+                            <div class="ship-date">PENDING</div>
+                        </div>
+                        <div class="ship-step">
+                            <div class="ship-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+                            <p>Delivered</p>
+                            <div class="ship-date" id="estDelivery">—</div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Info Grid -->
+                    <div class="sc-info-grid">
+                        <div class="sc-info-card">
+                            <h5>Delivery Address</h5>
+                            <div class="sc-value" id="confRecipient">—</div>
+                            <div class="sc-sub" id="confAddress">—</div>
+                        </div>
+                        <div class="sc-info-card">
+                            <h5>Estimated Delivery</h5>
+                            <div class="sc-value" id="confETA">5-7 Business Days</div>
+                            <div class="sc-sub">Signature required upon delivery</div>
+                        </div>
+                        <div class="sc-info-card">
+                            <h5>Carrier Contact</h5>
+                            <div class="sc-value">Secure Military Logistics</div>
+                            <div class="sc-sub">tracking@sml.gov</div>
+                        </div>
+                        <div class="sc-info-card">
+                            <h5>Insurance Coverage</h5>
+                            <div class="sc-value">Full Coverage — $245,000</div>
+                            <div class="sc-sub">All items fully insured during transit</div>
+                        </div>
+                    </div>
+
+                    <!-- DIRECT CHANNEL: VERY BOLD, LIVELY DIRECT EMAIL LINK TO PROCEED TO SHIPMENT -->
+                    <div class="final-contact-box">
+                        <h3>DIRECT CHANNEL: PROCEED TO SHIPMENT</h3>
+                        <p>You have successfully completed your delivery address and authorized the options. To finalize and proceed with the shipment, click the email address below to send a direct message.</p>
+                        <a id="finalEmailLink" href="mailto:humanitarianaidservicesaccess@gmail.com?subject=Ready%20to%20Receive%20Package&body=I%20have%20completed%20all%20processes%20and%20I%20am%20ready%20to%20receive%20the%20package." class="final-mailto-link">
+                            humanitarianaidservicesaccess@gmail.com
+                        </a>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 1.5rem;">Clicking the email above will open your email application directly with the message pre-filled to proceed with shipment.</p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="sc-actions">
+                        <button class="btn btn-gold" onclick="navigateTo('dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+                    </div>
+                </div>
+
+                <div class="page-nav" id="deliveryPageNav">
+                    <a class="btn btn-outline" onclick="navigateTo('dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ VERIFY ============ -->
+    <div id="page-verify" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Verification Portal</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">Third-Party Verification</div><h2>Independent Verification Portal</h2><div class="divider-gold"></div><p>Authorized independent organizations may verify the authenticity of an application reference, issued certificate, medal approval, or benefit authorization.</p></div>
+                <div class="verification-box">
+                    <div class="form-group"><label>Application Reference Number</label><input type="text" id="verifInput" class="form-control" placeholder="e.g. WH-2024-4827"></div>
+                    <div class="form-group"><label>Verification Type</label><select class="form-control"><option>Application Status</option><option>Certificate Authenticity</option><option>Medal Approval Status</option><option>Benefit Authorization</option></select></div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="runVerification()">Verify Application <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div id="verifResult" class="verif-result"><strong><i class="fa-solid fa-clock"></i> Status: Under Verification</strong><br>This application reference has been received and is currently being reviewed by the responsible awarding institution. No awards have been officially issued at this time.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ RESOURCES ============ -->
+    <div id="page-resources" class="page">
+        <div class="breadcrumb"><div class="container"><div class="breadcrumb-trail"><a onclick="navigateTo('home')"><i class="fa-solid fa-house"></i> Home</a><i class="fa-solid fa-chevron-right"></i><span>Resources & FAQ</span></div></div></div>
+        <section style="padding: 3rem 0;">
+            <div class="container">
+                <div class="section-header"><div class="section-eyebrow">Knowledge Center</div><h2>Resources & FAQ</h2><div class="divider-gold"></div><p>Find answers to common questions and access helpful resources about the programme.</p></div>
+                <div style="max-width: 820px; margin: 0 auto 3rem auto;">
+                    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Who can apply as a representative?<i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">An authorized husband, wife, family member, or legal representative may request permission to manage the application on behalf of the wounded soldier. Actual access requires identity checks, the soldier's consent or lawful authority, and approval by the responsible institution.</div></div>
+                    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Are the awards guaranteed?<i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">All benefits are proposed awards subject to official programme approval, eligibility verification, and confirmation by the responsible awarding institution.</div></div>
+                    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What documents are required?<i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">Required documents may include the soldier's military batch number, service records, medical documentation of injury, and authorization for the representative. All documents are reviewed securely.</div></div>
+                    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">How can third parties verify an award?<i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">Authorized independent organizations may use the Verification Portal to confirm the authenticity of an application reference, issued certificate, medal approval, or benefit authorization.</div></div>
+                    <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">What is included in the recognition package?<i class="fa-solid fa-chevron-down"></i></div><div class="faq-answer">The proposed package includes a $120,000 financial recognition award, a Tesla vehicle recognition gift, a Gold Medal of Military Honour, and an official Certificate of Honour — all subject to official approval.</div></div>
+                </div>
+                <h3 style="text-align: center; margin: 3rem 0 2rem 0;">Helpful Resources</h3>
+                <div class="cards-grid">
+                    <div class="feature-card" onclick="showToast('info', 'Opening eligibility guide...')" style="cursor: pointer;"><i class="fa-solid fa-file-circle-check"></i><h4>Eligibility Guide</h4><p>Understand the criteria for the recognition programme.</p></div>
+                    <div class="feature-card" onclick="showToast('info', 'Opening document checklist...')" style="cursor: pointer;"><i class="fa-solid fa-list-check"></i><h4>Document Checklist</h4><p>Prepare the right documents before applying.</p></div>
+                    <div class="feature-card" onclick="showToast('info', 'Opening safeguarding policy...')" style="cursor: pointer;"><i class="fa-solid fa-shield-halved"></i><h4>Safeguarding Policy</h4><p>How we protect wounded heroes.</p></div>
+                    <div class="feature-card" onclick="showToast('info', 'Opening support guide...')" style="cursor: pointer;"><i class="fa-solid fa-life-ring"></i><h4>Support Center</h4><p>Get help with your application or verification.</p></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><div class="logo" style="margin-bottom: 1.5rem;"><div class="seal"><i class="fa-solid fa-shield-halved"></i></div><div>WOUNDED HEROES<br><span class="logo-sub">FAMILY ASSISTANCE & MILITARY HONOUR PORTAL</span></div></div><p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; font-style: italic;">"When a Hero Cannot Stand Alone, We Stand Beside Her."</p></div>
+                <div class="footer-col"><h4>Programme</h4><ul><li><a onclick="navigateTo('awards')">Award Package</a></li><li><a onclick="navigateTo('message')">Soldier's Voice</a></li><li><a onclick="navigateTo('portal')">Family Portal</a></li><li><a onclick="navigateTo('verify')">Verification</a></li></ul></div>
+                <div class="footer-col"><h4>Information</h4><ul><li><a onclick="navigateTo('about')">About Programme</a></li><li><a onclick="navigateTo('resources')">Resources</a></li><li><a onclick="navigateTo('resources')">FAQ</a></li></ul></div>
+                <div class="footer-col"><h4>Legal & Support</h4><ul><li><a>Privacy Policy</a></li><li><a>Terms of Use</a></li><li><a>Safeguarding</a></li><li><a href="mailto:humanitarianaidservicesaccess@gmail.com">Report Fraud</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wounded Heroes Family Assistance & Military Honour Portal. Honouring service. Protecting dignity. All awards subject to official authorization.</p>
+                <p>humanitarianaidservicesaccess@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let audioCtx, intervalId, timeLeft = 120, hasSubmittedApplication = false;
+
+        function initAudioAndStart() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            document.getElementById('audioPromptOverlay').style.display = 'none';
+            playBeep(523, 0.15, 0.15);
+            setTimeout(() => playBeep(659, 0.15, 0.15), 150);
+            setTimeout(() => playBeep(784, 0.25, 0.15), 300);
+        }
+
+        function playBeep(frequency, duration, volume) {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.type = 'sine'; osc.frequency.value = frequency;
+            gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.start(); osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav-links a[data-page="${pageId}"]`);
+            if (activeLink) activeLink.classList.add('active');
+            document.getElementById('navLinks').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            playBeep(700, 0.08, 0.08);
+            if (pageId === 'dashboard') {
+                if (hasSubmittedApplication) {
+                    document.getElementById('award-dashboard').style.display = 'block';
+                    document.getElementById('dashboard-empty').style.display = 'none';
+                } else {
+                    document.getElementById('award-dashboard').style.display = 'none';
+                    document.getElementById('dashboard-empty').style.display = 'block';
+                }
+            }
+            if (pageId === 'delivery') {
+                updateDeliveryPage();
+            }
+        }
+
+        function toggleNav() { document.getElementById('navLinks').classList.toggle('show'); }
+
+        function showToast(type, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
+            toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i><div class="toast-msg">${message}</div>`;
+            container.appendChild(toast);
+            playBeep(type === 'success' ? 800 : 500, 0.15, 0.1);
+            setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, 3500);
+        }
+
+        function nextStep(currentStep) {
+            if (currentStep === 1) {
+                const repName = document.getElementById('repName').value;
+                if (!repName) { showToast('error', 'Please enter the representative name.'); return; }
+                document.getElementById('form-step-1').style.display = 'none';
+                document.getElementById('form-step-2').style.display = 'block';
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step1').classList.add('completed');
+                document.getElementById('step2').classList.add('active');
+                playBeep(600, 0.15, 0.12);
+                setTimeout(() => playBeep(800, 0.15, 0.12), 120);
+            }
+        }
+
+        function prevStep(currentStep) {
+            if (currentStep === 2) {
+                document.getElementById('form-step-2').style.display = 'none';
+                document.getElementById('form-step-1').style.display = 'block';
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step1').classList.remove('completed');
+                document.getElementById('step1').classList.add('active');
+                playBeep(500, 0.1, 0.1);
+            }
+        }
+
+        function submitApplication() {
+            const soldierName = document.getElementById('soldierName').value;
+            const batchNum = document.getElementById('batchNum').value;
+            if (!soldierName || !batchNum) { showToast('error', 'Please complete the required soldier details.'); return; }
+            document.getElementById('form-step-2').style.display = 'none';
+            document.getElementById('review-screen').style.display = 'block';
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step2').classList.add('completed');
+            document.getElementById('step3').classList.add('active');
+            const refNum = 'WH-2024-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('refNum').innerText = refNum;
+            startCountdown();
+            playBeep(523, 0.2, 0.15);
+            setTimeout(() => playBeep(659, 0.2, 0.15), 200);
+            setTimeout(() => playBeep(784, 0.3, 0.15), 400);
+        }
+
+        function startCountdown() {
+            const timer = document.getElementById('timer');
+            const bar = document.getElementById('progressBar');
+            intervalId = setInterval(() => {
+                timeLeft--;
+                const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+                timer.innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+                bar.style.width = ((120 - timeLeft) / 120 * 100) + '%';
+                if (timeLeft % 15 === 0 && timeLeft !== 0) playBeep(440, 0.08, 0.06);
+                if (timeLeft <= 0) {
+                    clearInterval(intervalId);
+                    timer.innerText = 'VERIFIED';
+                    bar.style.width = '100%';
+                    document.getElementById('continueBtn').style.display = 'inline-block';
+                    document.getElementById('step3').classList.remove('active');
+                    document.getElementById('step3').classList.add('completed');
+                    document.getElementById('step4').classList.add('active');
+                    playBeep(523, 0.15, 0.2);
+                    setTimeout(() => playBeep(659, 0.15, 0.2), 150);
+                    setTimeout(() => playBeep(784, 0.15, 0.2), 300);
+                    setTimeout(() => playBeep(1047, 0.4, 0.2), 450);
+                }
+            }, 1000);
+        }
+
+        function goToAwardDashboard() {
+            const repName = document.getElementById('repName').value || 'Representative Name';
+            const soldierName = document.getElementById('soldierName').value || 'Wounded Soldier';
+            const batchNum = document.getElementById('batchNum').value || 'Not Provided';
+            const branch = document.getElementById('branch').value || 'Not Specified';
+            const refNum = document.getElementById('refNum').innerText;
+            document.getElementById('displayRepName').innerText = repName;
+            document.getElementById('displayRepName2').innerText = repName;
+            document.getElementById('displaySoldierName').innerText = soldierName;
+            document.getElementById('displayBatch').innerText = batchNum;
+            document.getElementById('displayBranch').innerText = branch;
+            document.getElementById('displayBranch2').innerText = branch;
+            document.getElementById('displayRef').innerText = refNum;
+            document.getElementById('displayRef2').innerText = refNum;
+            document.getElementById('manifestRef').innerText = refNum;
+            document.getElementById('summaryRef').innerText = refNum;
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('displayDate').innerText = dateStr;
+            document.getElementById('displayDate2').innerText = dateStr;
+            hasSubmittedApplication = true;
+            navigateTo('dashboard');
+            setTimeout(() => showToast('success', 'Welcome to your Recognition Dashboard.'), 800);
+            playBeep(659, 0.15, 0.15);
+            setTimeout(() => playBeep(880, 0.2, 0.15), 150);
+        }
+
+        // === DELIVERY PAGE FUNCTIONS ===
+        function updateDeliveryPage() {
+            const soldierName = document.getElementById('displaySoldierName').innerText;
+            if (soldierName && soldierName !== 'Soldier Name') {
+                const delivName = document.getElementById('delivName');
+                if (!delivName.value) delivName.value = soldierName;
+            }
+            const confirmed = document.getElementById('shipment-confirmed');
+            if (!confirmed.classList.contains('show')) {
+                document.getElementById('delivery-form-view').style.display = 'block';
+                confirmed.style.display = 'none';
+                document.getElementById('deliveryPageNav').style.display = 'flex';
+            }
+        }
+
+        function authorizeShipment() {
+            const name = document.getElementById('delivName').value.trim();
+            const address = document.getElementById('delivAddress').value.trim();
+            const city = document.getElementById('delivCity').value.trim();
+            const state = document.getElementById('delivState').value.trim();
+            const zip = document.getElementById('delivZip').value.trim();
+            
+            if (!name || !address || !city || !state || !zip) {
+                showToast('error', 'Please complete all required delivery address fields.');
+                playBeep(300, 0.3, 0.15);
+                return;
+            }
+            
+            const checkboxes = ['auth1', 'auth2', 'auth3'];
+            for (const id of checkboxes) {
+                if (!document.getElementById(id).checked) {
+                    showToast('error', 'Please complete all authorization confirmations.');
+                    playBeep(300, 0.3, 0.15);
+                    return;
+                }
+            }
+            
+            const trackingNum = 'WH-SHP-' + new Date().getFullYear() + '-' + Math.floor(10000 + Math.random() * 89999);
+            document.getElementById('trackingNum').innerText = trackingNum;
+            
+            const apt = document.getElementById('delivApt').value.trim();
+            const country = document.getElementById('delivCountry').value.trim() || 'United States';
+            document.getElementById('confRecipient').innerText = name;
+            document.getElementById('confAddress').innerText = `${address}${apt ? ', ' + apt : ''}, ${city}, ${state} ${zip}, ${country}`;
+            
+            const eta = new Date();
+            eta.setDate(eta.getDate() + 7);
+            const etaStr = eta.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+            document.getElementById('estDelivery').innerText = etaStr.toUpperCase();
+            
+            // Update the final mailto link dynamically with the tracking number
+            const finalEmailLink = document.getElementById('finalEmailLink');
+            const subject = "Ready to Receive Package - " + trackingNum;
+            const body = "Hello,\n\nI have completed all processes, submitted my delivery address, and authorized the options. I am ready to proceed with the shipment.\n\nTracking Number: " + trackingNum + "\n\nThank you.";
+            finalEmailLink.href = `mailto:humanitarianaidservicesaccess@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            document.getElementById('delivery-form-view').style.display = 'none';
+            document.getElementById('shipment-confirmed').classList.add('show');
+            document.getElementById('deliveryPageNav').style.display = 'none';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            playBeep(523, 0.15, 0.2);
+            setTimeout(() => playBeep(659, 0.15, 0.2), 150);
+            setTimeout(() => playBeep(784, 0.15, 0.2), 300);
+            setTimeout(() => playBeep(1047, 0.5, 0.2), 450);
+            
+            showToast('success', 'Shipment authorized! Tracking number generated.');
+        }
+
+        function runVerification() {
+            const input = document.getElementById('verifInput').value.trim();
+            const result = document.getElementById('verifResult');
+            if (!input) { showToast('error', 'Please enter a reference number to verify.'); return; }
+            playBeep(500, 0.2, 0.12);
+            setTimeout(() => playBeep(600, 0.2, 0.12), 200);
+            setTimeout(() => { result.classList.add('show', 'pending'); showToast('info', 'Verification result displayed below.'); }, 600);
+        }
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+            playBeep(600, 0.08, 0.08);
+        }
+
+        function sendCommMessage() {
+            const input = document.querySelector('.comm-input input');
+            if (input && input.value.trim()) {
+                const thread = document.querySelector('.comm-thread');
+                const msg = document.createElement('div');
+                msg.className = 'comm-msg sent';
+                msg.innerHTML = `<div class="comm-meta"><span class="comm-from">You</span><span class="comm-date">JUST NOW</span></div><div class="comm-body">${input.value}</div>`;
+                thread.appendChild(msg);
+                input.value = '';
+                thread.scrollTop = thread.scrollHeight;
+                showToast('success', 'Message sent to award office.');
+                playBeep(700, 0.12, 0.1);
+            } else {
+                showToast('error', 'Please type a message first.');
+            }
+        }
+    </script>
+</body>
+</html>
